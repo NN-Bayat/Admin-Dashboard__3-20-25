@@ -8,4 +8,4 @@ export default defineConfig({
   },
   base:
     process.env.NODE_ENV === "production" ? "/Admin-Dashboard__3-20-25/" : "/",
-});
+});>>
