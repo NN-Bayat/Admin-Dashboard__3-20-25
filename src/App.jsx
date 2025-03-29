@@ -8,6 +8,7 @@ import UsersPage from "./pages/UsersPage";
 import SalesPage from "./pages/SalesPage";
 import OrdersPage from "./pages/OrdersPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
+import SettingsPage from "./pages/SettingsPage";
 
 const App = () => {
   return (
@@ -21,12 +22,12 @@ const App = () => {
       <Sidebar />
       <Routes>
         <Route path="/Admin-Dashboard__3-20-25/" element={<OverviewPage />} />
-        {/* <Route path="/" element={<OverviewPage />} /> */}
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/users" element={<UsersPage />} />
-        <Route path="/sales" element={<SalesPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/products" element={<ProductsPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/users" element={<UsersPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/sales" element={<SalesPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/orders" element={<OrdersPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/analytics" element={<AnalyticsPage />} />
+        <Route path="/Admin-Dashboard__3-20-25/settings" element={<SettingsPage />} />
       </Routes>
     </div>
   );

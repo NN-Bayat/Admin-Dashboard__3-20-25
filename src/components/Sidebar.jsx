@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BarChart2,
   DollarSign,
@@ -8,27 +9,37 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const SIDEBAR_ITEMS = [
   { name: "Overview", icon: BarChart2, color: "#6366f1", href: "/Admin-Dashboard__3-20-25/" },
-  // { name: "Overview", icon: BarChart2, color: "#6366f1", href: "/" },// first one
-  { name: "Products", icon: ShoppingBag, color: "#8B5CF6", href: "/products" },
-  { name: "Users", icon: Users, color: "#EC4899", href: "/users" },
-  { name: "Sales", icon: DollarSign, color: "#10B981", href: "/sales" },
-  { name: "Orders", icon: ShoppingCart, color: "#F59E0B", href: "/orders" },
-  { name: "Analytics", icon: TrendingUp, color: "#3B82F6", href: "/analytics" },
-  { name: "Settings", icon: Settings, color: "#6EE7B7", href: "/settings" },
+  { name: "Products", icon: ShoppingBag, color: "#8B5CF6", href: "/Admin-Dashboard__3-20-25/products" },
+  { name: "Users", icon: Users, color: "#EC4899", href: "/Admin-Dashboard__3-20-25/users" },
+  { name: "Sales", icon: DollarSign, color: "#10B981", href: "/Admin-Dashboard__3-20-25/sales" },
+  { name: "Orders", icon: ShoppingCart, color: "#F59E0B", href: "/Admin-Dashboard__3-20-25/orders" },
+  { name: "Analytics", icon: TrendingUp, color: "#3B82F6", href: "/Admin-Dashboard__3-20-25/analytics" },
+  { name: "Settings", icon: Settings, color: "#6EE7B7", href: "/Admin-Dashboard__3-20-25/settings" },
 ];
+
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 640);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobileView = window.innerWidth < 640;
+      setIsMobile(mobileView);
+      setIsSidebarOpen(!mobileView);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <motion.div
-      className={`relative z-10 transition-all duration-300 ease-in-out flex-shrink-0 ${
-        isSidebarOpen ? "w-64" : "w-20"
-      }`}
+      className="relative z-10 transition-all duration-300 ease-in-out flex-shrink-0"
       animate={{ width: isSidebarOpen ? 256 : 80 }}
     >
       <div className="h-full bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 flex flex-col border-r border-gray-700">
@@ -57,7 +68,7 @@ const Sidebar = () => {
                       initial={{ opacity: 0, width: 0 }}
                       animate={{ opacity: 1, width: "auto" }}
                       exit={{ opacity: 0, width: 0 }}
-                      transition={{ duration: 0.2, delay: 0.3 }}
+                      transition={{ duration: 0.25, delay: 0.4 }}
                     >
                       {item.name}
                     </motion.span>
